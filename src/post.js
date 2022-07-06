@@ -4,9 +4,8 @@ const API = "https://api.escuelajs.co/api/v1";
 
 const postData = (urlApi, data) => {
   const response = fetch(urlApi, {
-    method: "PATCH",
+    method: "post",
     mode: "cors",
-    credentials: "same-origin",
     headers: {
       "Content-Type": "application/json",
     },
@@ -15,15 +14,49 @@ const postData = (urlApi, data) => {
   return response;
 };
 
+const putData = (urlApi, data) => {
+  const response = fetch(urlApi, {
+    method: "put",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  return response;
+};
+
+const deleteData = (urlApi) => {
+  const response = fetch(urlApi, {
+    method: "delete",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return response
+};
+
 const obj = {
   title: "Smart watch",
   price: 200,
-  description: "A description from Alan, fixed",
+  description: "Put a description from Alan F",
   categoryId: 1,
   images: ["https://placeimg.com/640/480/any"],
 };
 
-postData(`${API}/products/235`, obj)
-  .then((response) => response.json())
-  .then((data) => console.log(data));
+// deleteData(`${API}/products/235`)
+//   .then((result) => {
+//     console.log("Eliminado")
+//   }).catch((err) => {
+//     console.log("Surgio un error")
+//   });
 
+
+// postData(`${API}/products`, obj)
+//   .then((response) => response.json())
+//   .then((data) => console.log(data));
+
+putData(`${API}/products/265`, obj)
+  .then(response => response.json())
+  .then(data => console.log(data))
